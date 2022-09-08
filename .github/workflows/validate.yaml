@@ -18,8 +18,6 @@ jobs:
 
       - name: terraform validate
         uses: dflook/terraform-validate@v1
-        with:
-          path: ./docker-code-server-custom-image-dotfiles/main.tf
       
       - name: Validate failed
         if: ${{ failure() && steps.validate.outputs.failure-reason == 'validate-failed' }}
