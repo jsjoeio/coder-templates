@@ -77,7 +77,7 @@ resource "docker_volume" "home_volume" {
 
 resource "docker_container" "workspace" {
   count = data.coder_workspace.me.start_count
-  image = ${var.custom_docker_image}
+  image = var.custom_docker_image
   # Uses lower() to avoid Docker restriction on container names.
   name = "coder-${data.coder_workspace.me.owner}-${lower(data.coder_workspace.me.name)}"
   dns  = ["1.1.1.1"]
@@ -101,7 +101,7 @@ resource "coder_metadata" "container_info" {
 
   item {
     key   = "image"
-    value = var.docker_image
+    value = var.custom_docker_image
   }
 }
 
