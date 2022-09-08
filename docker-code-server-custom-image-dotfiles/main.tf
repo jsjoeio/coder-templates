@@ -68,12 +68,6 @@ terraform {
   }
 }
 
-data "coder_provisioner" "me" {
-}
-
-provider "docker" {
-}
-
 data "coder_workspace" "me" {
 }
 
