@@ -1,0 +1,24 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    name: Validate terraform
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: terraform validate
+        uses: dflook/terraform-validate@v1
+        with:
+          path: docker-code-server-custom-image-dotfiles/main.tf
+      
+      - name: Validate failed
+        if: ${{ failure() && steps.validate.outputs.failure-reason == 'validate-failed' }}
+        run: echo "terraform validate failed"
