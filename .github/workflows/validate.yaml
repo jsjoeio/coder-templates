@@ -1,0 +1,20 @@
+name: Validate Terraform
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    name: Validate terraform
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: terraform validate
+        uses: dflook/terraform-validate@v1
